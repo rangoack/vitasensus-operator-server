@@ -7,7 +7,7 @@ services:
         - GVITE_VERSION=v2.11.3-nightly-202207201142
         - GVITE_PLATFORM=linux
     ports:
-      - 8989:80
+      - ${HOST_PORT-8989}:80
     working_dir: /server
     volumes:
       - ./:/server
