@@ -1,0 +1,57 @@
+services:
+  app:
+    init: true
+    build:
+      context: .
+      args:
+        - GVITE_VERSION=v2.11.3-nightly-202207201142
+        - GVITE_PLATFORM=linux
+    ports:
+      - 8989:80
+    working_dir: /server
+    volumes:
+      - ./:/server
+      - gvite-executable:/gvite
+      - gvite-ledger:/root/.gvite/devdata
+      - ./node-config/node_config.json:/gvite/node_config.json
+      - ./node-config/genesis.json:/gvite/genesis.json
+    # command: ls -l
+    command: sh -c "/gvite/gvite -config /gvite/node_config.json >> /gvite/gvite.log 2>&1 & (yarn install && yarn run dev)"
+    environment:
+      - GVITE_EXECUTABLE=/gvite/gvite
+      - VITE_IPC_URL=${VITE_IPC_URL-$$HOME/.gvite/devdata/gvite.ipc}
+      - VITE_HTTP_URL=${VITE_HTTP_URL:-app:48132}
+      - VITE_WALLET_PRIVATE_KEY=${VITE_WALLET_PRIVATE_KEY:?VITE_WALLET_PRIVATE_KEY env var is required}
+      - VITE_WALLET_ADDRESS=${VITE_WALLET_ADDRESS:?VITE_WALLET_ADDRESS env var is required}
+      - VITASENSUS_CONTRACT_ADDRESS=${VITASENSUS_CONTRACT_ADDRESS:?VITASENSUS_CONTRACT_ADDRESS env var is required}
+      - MONGO_DB_URL=${MONGO_DB_URL-mongodb://root:example@mongo:27017}
+      - PORT=${PORT-80}
+    depends_on:
+      - mongo
+
+  mongo:
+    profiles:
+      - development
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    profiles:
+      - development
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+
+volumes:
+  gvite-executable:
+  gvite-ledger:

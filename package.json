@@ -1,0 +1,37 @@
+{
+  "name": "account-block-watcher",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Ufedojo",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon --watch swagger-output.json --watch './*.js' --watch './*.ts' --watch './src/**/*.js' --watch './src/**/*.ts' index.ts"
+  },
+  "dependencies": {
+    "@vite/vitejs": "2.3.19-alpha.8",
+    "@vite/vuilder": "^0.1.0-alpha.17",
+    "bignumber.js": "^9.1.0",
+    "cors": "^2.8.5",
+    "csv-string": "^4.1.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.17.1",
+    "express-sitemap-html": "^1.2.4",
+    "express-validator": "^6.14.2",
+    "mongodb": "^4.9.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/chai": "^4.3.3",
+    "@types/cors": "^2.8.12",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.8",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "tsup": "^6.2.2",
+    "typescript": "^4.8.2"
+  }
+}
