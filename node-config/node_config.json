@@ -2,6 +2,8 @@
   "NetID": 9,
   "Identity": "foo-bar",
   "GenesisFile": "/gvite/genesis.json",
+  "DataDir": "/root/.gvite",
+  "KeyStoreDir": "/root/.gvite",
   "MaxPeers": 10,
   "MaxPassivePeersRatio": 0,
   "BootNodes": [

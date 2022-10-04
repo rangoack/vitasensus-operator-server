@@ -1,4 +1,4 @@
-import { Application, Express } from "express";
+import { Express } from "express";
 import { getAddressBalanceForTokenAtHeight } from "../functions/balances";
 
 export default function (app: Express) {

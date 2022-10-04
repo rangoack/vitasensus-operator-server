@@ -6,7 +6,7 @@ import { verifySignature } from "../helpers/crypto";
 import {
   getVitasensusContract,
   getViteAccount,
-  getViteAPI,
+  getReadOnlyViteAPI,
 } from "../config/singleton";
 import { getAddressBalanceForTokenAtHeight } from "../functions/balances";
 import BigNumber from "bignumber.js";
@@ -87,7 +87,7 @@ Choice index: ${choiceIndex}`;
         tokenId,
         snapshot
       );
-      const viteAPI = getViteAPI();
+      const viteAPI = getReadOnlyViteAPI();
       const tokenInfo: TokenInfo = await viteAPI.request(
         "contract_getTokenInfoById",
         tokenId

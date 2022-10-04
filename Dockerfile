@@ -1,6 +1,6 @@
 FROM node:14-alpine
 # Adding build tools to make yarn install work on Apple silicon / arm64 machines
-RUN apk add python3 g++ make curl file
+RUN apk add python3 g++ make curl
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --production

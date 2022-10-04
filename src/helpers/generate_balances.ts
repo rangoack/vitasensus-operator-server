@@ -1,12 +1,11 @@
 import * as vitejs from "@vite/vitejs";
 import * as vuilder from "@vite/vuilder";
-import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config()
+import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config();
 import {
   VITE_WALLET_ADDRESS,
   VITE_WALLET_PRIVATE_KEY,
 } from "../config/constants";
-
 
 export async function generateBalances(addresses: string[], tokenId?: string) {
   const api = new vitejs.ViteAPI(
@@ -18,7 +17,6 @@ export async function generateBalances(addresses: string[], tokenId?: string) {
   topBoss.setPrivateKey(privateKey);
   topBoss._setProvider(api);
   console.log(privateKey);
-  
 
   for (const address of addresses) {
     await topBoss.sendToken(address, "900000000000000000000000", tokenId);

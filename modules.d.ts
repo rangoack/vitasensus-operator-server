@@ -1,1 +1,1 @@
-declare module 'express-sitemap-html';
+declare module "express-sitemap-html";
