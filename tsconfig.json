@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2021",
-    "outDir": "api",
+    "outDir": "out",
     "lib": ["es2021", "dom"],
     "sourceMap": true,
     "rootDir": "src",
